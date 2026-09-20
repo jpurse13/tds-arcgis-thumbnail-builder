@@ -1,8 +1,8 @@
-# Thumbnail Builder for ArcGIS Online (City of San Diego)
+# Thumbnail Builder for ArcGIS Online (TDS Telecom)
 
-A web app for creating item and group thumbnails for ArcGIS Online content using HTML5 Canvas, styled to City of San Diego design standards. Runs entirely in the browser as a static site.
+A web app for creating item and group thumbnails for ArcGIS Online content using HTML5 Canvas, styled to TDS Telecom design standards. Runs entirely in the browser as a static site.
 
-<https://jalogsdon.github.io/cosd-arcgis-thumbnail-builder/>
+<https://jalogsdon.github.io/cosd-arcgis-thumbnail-builder/> (NEED TO UPDATE)
 
 > Independent community project. Not affiliated with or endorsed by Esri. "ArcGIS" is a trademark of Esri.
 
@@ -94,26 +94,30 @@ https://jalogsdon.github.io/cosd-arcgis-thumbnail-builder/group.html?background=
 ---
 
 ## Attribution
-
+This project is a fork of a fork of **ArcGISThumbnailBuilder** by Joshua Tanner (Oregon Geospatial Enterprise Office):
 This project is a fork of **ArcGISThumbnailBuilder** by Joshua Tanner (Oregon Geospatial Enterprise Office):
 
 - Original: <https://github.com/tannerjt/ArcGISThumbnailBuilder>
-- Fork: <https://github.com/JALogsdon/cosd-arcgis-thumbnail-builder>
+Credit for the original concept and implementation belongs to the original author.
+- Original Fork: <https://github.com/JALogsdon/cosd-arcgis-thumbnail-builder>
+Original for modifyied to use City of San Diego branding, this fork added a group thumbnail builder, live template previews, auto-fitting titles, logo scale and outline options, light/dark mode, drag-and-drop and paste-a-URL image input, and shareable links.
 
-Credit for the original concept and implementation belongs to the original author. On top of City of San Diego branding, this fork adds a group thumbnail builder, live template previews, auto-fitting titles, logo scale and outline options, light/dark mode, drag-and-drop and paste-a-URL image input, and shareable links.
+- Fork: TBD
+This for currently is just adjustments to utilize TDS Telecom branding
+
+Credit for the original concept and implementation belongs to the original author as well as the author of the enhancements made in the orgiginal Fork
 
 ---
 
 ## AI Disclosure
 
-Generative AI tools were used in this project with human oversight, no sensitive data exposure, and in compliance with the City's AI Policy (effective 9/13/2024).
+Noting the Disclosure from the prior Fork: Generative AI tools were used in this project with human oversight, no sensitive data exposure, and in compliance with the City's AI Policy (effective 9/13/2024).
 
 ---
 
 ## Project Repository
 
-[cosd-arcgis-thumbnail-builder](https://github.com/JALogsdon/cosd-arcgis-thumbnail-builder)
+[tds-arcgis-thumbnail-builder](https://github.com/jpurse13/tds-arcgis-thumbnail-builder)
 
 ## License
-
-[GNU General Public License v3.0](LICENSE). This fork inherits the GPL-3.0 license of the upstream project ([tannerjt/ArcGISThumbnailBuilder](https://github.com/tannerjt/ArcGISThumbnailBuilder)) and must remain GPL-3.0.
+[GNU General Public License v3.0](LICENSE). This fork inherits the GPL-3.0 license of the upstream projects ([tannerjt/ArcGISThumbnailBuilder] and ([JALogsdon/cosd-arcgis-thumbnail-builder] (https://github.com/tannerjt/ArcGISThumbnailBuilder) and (https://github.com/JALogsdon/cosd-arcgis-thumbnail-builder)) and must remain GPL-3.0.
