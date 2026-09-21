@@ -35,9 +35,9 @@
   // localhost, file://) — that also lets the browser reuse the one download the
   // template preview cards already made instead of fetching a second copy.
   var DEFAULTS = {
-    title: "San Diego Geospatial Services",
-    background: "./img/background/cosd_background.jpg",
-    logo: "./img/logo/cosd_logo.png",
+    title: "TDS Telecom Portal Item Name",
+    background: "./img/background/OSPC_background.jpg",
+    logo: "./img/logo/TDS_Color_Logo.png",
   };
 
   // Logo size multiplier and white-outline width, set from ?logoScale= /
