@@ -37,6 +37,7 @@
   color: #ffffff !important;
 }
 .dark-mode #edit-canvas,
+.dark-mode #service-canvas,
 .dark-mode #group-canvas {
   border-color: #555;
 }
@@ -127,6 +128,7 @@ main.container {
    template-card preview canvases keep their own intrinsic aspect ratio
    (a generic `canvas` rule would stretch the square group previews). */
 #edit-canvas,
+#service-canvas,
 #group-canvas {
   display: block;
   width: 100%;
@@ -168,7 +170,9 @@ main.container {
 .template-rail .card {
   margin: 8px 0 16px;
   cursor: pointer;
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition:
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
 }
 .template-rail .card:hover,
 .template-rail .card:focus-within {

@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TDS GIS Service Thumbnail Builder</title>
+    <meta
+      name="description"
+      content="Design and download a 600×400 item thumbnail for ArcGIS Portals, styled to TDS Telecom standards. Runs entirely in your browser."
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="68x28"
+      href="./img/logo/TDS_Color_Logo_favicon_68x28.png"
+    />
+    <link rel="apple-touch-icon" href="./img/logo/apple_touch_TDS_180.png" />
+    <!-- Social / link-preview cards -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="TDS Telecom GIS Portal Thumbnail Builder"
+    />
+    <meta
+      property="og:description"
+      content="Design and download item and group thumbnails for ArcGIS Portals, styled to TDS Telecom GIS Administration standards."
+    />
+    <meta
+      property="og:url"
+      content="https://jpurse13.github.io/tds-arcgis-thumbnail-builder/service.html"
+    />
+    <meta
+      property="og:image"
+      content="https://jpurse13.github.io/tdd-arcgis-thumbnail-builder/img/gallery/social_card.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Apply the saved theme before paint to avoid a flash of the wrong theme -->
+    <script>
+      (function () {
+        // Resolve theme: URL ?theme= wins (works even where localStorage is
+        // isolated/blocked, e.g. Firefox opening files via file://), then the
+        // saved theme, then the system preference.
+        var dark = false,
+          p = null;
+        try {
+          p = new URLSearchParams(location.search).get("theme");
+        } catch (e) {}
+        if (p === "dark") dark = true;
+        else if (p === "light") dark = false;
+        else {
+          try {
+            var stored = localStorage.getItem("theme");
+            dark = stored
+              ? stored === "dark"
+              : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          } catch (e) {
+            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          }
+        }
+        if (dark) document.documentElement.classList.add("dark-mode");
+      })();
+    </script>
+    <!-- Vendored locally (no CDN) so the UI still works on hostile/slow WiFi -->
+    <link rel="stylesheet" href="./css/materialize.min.css" />
+    <link rel="stylesheet" href="./css/materialize-colorpicker.min.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+
+  <body>
+    <a href="#main" class="visually-hidden focusable">Skip to content</a>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="./index.html" class="brand-logo"
+          >TDS Telecom GIS Portal<span class="brand-sub"
+            >Thumbnail Builder</span
+          ></a
+        >
+        <a
+          href="#"
+          data-target="mobile-nav"
+          class="sidenav-trigger"
+          aria-label="Open navigation menu"
+        >
+          <i class="material-icons" aria-hidden="true">menu</i>
+        </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="index.html">Item Thumbnail</a></li>
+          <li><a href="group.html">Group Thumbnail</a></li>
+          <li><a href="service.html">Service Thumbnail</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li>
+            <a
+              href="#"
+              data-theme-toggle
+              role="button"
+              aria-pressed="false"
+              aria-label="Switch to dark mode"
+            >
+              <i class="material-icons" aria-hidden="true">dark_mode</i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Mobile side navigation -->
+    <ul class="sidenav" id="mobile-nav">
+      <li><a href="index.html">Item Thumbnail</a></li>
+      <li><a href="group.html">Group Thumbnail</a></li>
+      <li><a href="service.html">Service Thumbnail</a></li>
+      <li><a href="help.html">Help</a></li>
+      <li>
+        <a
+          href="#"
+          data-theme-toggle
+          role="button"
+          aria-pressed="false"
+          aria-label="Switch to dark mode"
+        >
+          <i class="material-icons" aria-hidden="true">dark_mode</i>
+        </a>
+      </li>
+    </ul>
+
+    <main id="main" class="container">
+      <h1 class="visually-hidden">TDS Telecom Item Thumbnail Builder</h1>
+      <div class="row">
+        <!-- Template rail: pick a starting point -->
+        <aside class="col s12 l3 template-rail">
+          <h2 class="rail-title">Templates</h2>
+          <p class="grey-text text-darken-1">
+            Pick one to load it into the builder.
+          </p>
+          <div class="rail-cards">
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS PROD Portal READ SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS PROD Portal READ SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/PROD_READ_Services Background.jpg&logo=./img/logo/TDS_PROD_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=READ%20SERVICE&sidebarColor=28,28,28,0.5&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS PROD Portal READ SERVICE"
+                  >Use this template</a
+                >
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS PROD Portal EDIT SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS PROD Portal EDIT SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/PROD_EDIT_Services Background.jpg&logo=./img/logo/TDS_PROD_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=EDIT%20SERVICE&sidebarColor=182,245,199,0.4&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS PROD Portal EDIT SERVICE"
+                  >Use this template</a
+                >
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS STAGE Portal READ SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS STAGE Portal READ SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/STAGE_READ_Services Background.jpg&logo=./img/logo/TDS_STAGE_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=READ%20SERVICE&sidebarColor=28,28,28,0.5&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS STAGE Portal READ SERVICE"
+                  >Use this template
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS STAGE Portal EDIT SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS STAGE Portal EDIT SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/STAGE_EDIT_Services Background.jpg&logo=./img/logo/TDS_STAGE_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=EDIT%20SERVICE&sidebarColor=182,245,199,0.4&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS STAGE Portal EDIT SERVICE"
+                  >Use this template</a
+                >
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS DEV Portal READ SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS DEV Portal READ SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/DEV_READ_Services Background.jpg&logo=./img/logo/TDS_DEV_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=READ%20SERVICE&sidebarColor=28,28,28,0.5&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS DEV Portal READ SERVICE"
+                  >Use this template
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <canvas
+                  class="tpl-preview"
+                  width="600"
+                  height="400"
+                  role="img"
+                  aria-label="TDS DEV Portal EDIT SERVICE thumbnail preview"
+                ></canvas>
+              </div>
+              <div class="card-content">
+                <p>TDS DEV Portal EDIT SERVICE</p>
+              </div>
+              <div class="card-action">
+                <a
+                  href="./service.html?background=./img/background/DEV_EDIT_Services Background.jpg&logo=./img/logo/TDS_DEV_Portal_tag.png&title=SERVICE%20Name%20Here&titleColor=0,0,0,0.9&category=EDIT%20SERVICE&sidebarColor=182,245,199,0.4&logoScale=1.5&logoStroke=1.5"
+                  aria-label="Use this template: TDS DEV Portal EDIT SERVICE"
+                  >Use this template
+                </a>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Builder: preview + image uploads on the left, title/sidebar on the right -->
+        <div class="col s12 l9">
+          <div class="row">
+            <!-- Preview + image uploads -->
+            <div class="col s12 l6">
+              <div class="row">
+                <!-- Accessible thumbnail preview -->
+                <canvas
+                  id="service-canvas"
+                  role="img"
+                  aria-label="Live preview of your thumbnail (600 x 400 pixels)"
+                >
+                  <!-- Fallback text for very old browsers or non-visual agents -->
+                  Live preview of your thumbnail (600 x 400 pixels)
+                </canvas>
+                <p
+                  id="canvas-status"
+                  class="visually-hidden"
+                  aria-live="polite"
+                ></p>
+                <p class="canvas-caption">
+                  600 × 400 px PNG · sized for ArcGIS Enterprise Portal Service
+                  thumbnails
+                </p>
+              </div>
+
+              <div class="row btn-row">
+                <a
+                  id="download-image"
+                  href="#"
+                  download="thumbnail.png"
+                  class="waves-effect waves-light btn"
+                  ><i class="material-icons left">save</i>Download</a
+                >
+                <button
+                  id="copy-link"
+                  type="button"
+                  class="waves-effect btn-flat"
+                >
+                  <i class="material-icons left">link</i>Copy link
+                </button>
+                <button id="reset" type="button" class="waves-effect btn-flat">
+                  <i class="material-icons left">refresh</i>Reset
+                </button>
+              </div>
+
+              <div class="row">
+                <h2>Background Image</h2>
+                <p class="grey-text text-darken-1 field-hint">
+                  600×400 px or larger · PNG, JPEG, GIF
+                </p>
+                <div class="input-field col s12">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>File</span>
+                      <label for="background" class="visually-hidden"
+                        >Upload background image</label
+                      >
+                      <input
+                        type="file"
+                        id="background"
+                        accept="image/png,image/jpeg,image/gif"
+                      />
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input
+                        class="file-path validate"
+                        type="text"
+                        aria-label="Selected background file"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 url-field">
+                  <label class="color-label" for="background-url"
+                    >or paste a background image URL</label
+                  >
+                  <input
+                    type="text"
+                    id="background-url"
+                    class="url-input"
+                    placeholder="https://…"
+                  />
+                </div>
+              </div>
+
+              <div class="row">
+                <h2>Logo Image</h2>
+                <p class="grey-text text-darken-1 field-hint">
+                  Square transparent PNG recommended · 256×256 px or larger
+                </p>
+                <div class="input-field col s12">
+                  <div class="file-field input-field">
+                    <div class="btn">
+                      <span>File</span>
+                      <label for="logo" class="visually-hidden"
+                        >Upload logo image</label
+                      >
+                      <input
+                        type="file"
+                        id="logo"
+                        accept="image/png,image/jpeg,image/gif"
+                      />
+                    </div>
+                    <div class="file-path-wrapper">
+                      <input
+                        class="file-path validate"
+                        type="text"
+                        aria-label="Selected logo file"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12 url-field">
+                  <label class="color-label" for="logo-url"
+                    >or paste a logo image URL</label
+                  >
+                  <input
+                    type="text"
+                    id="logo-url"
+                    class="url-input"
+                    placeholder="https://…"
+                  />
+                </div>
+                <div class="col s12 slider-field">
+                  <label class="color-label" for="logo-scale"
+                    >Logo size <span id="logo-scale-val">100%</span></label
+                  >
+                  <p class="range-field">
+                    <input
+                      type="range"
+                      id="logo-scale"
+                      min="0.6"
+                      max="2"
+                      step="0.05"
+                      value="1"
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Title and sidebar -->
+            <div class="col s12 l6">
+              <div class="row">
+                <div class="col s12">
+                  <div class="row">
+                    <h2>Title</h2>
+                    <div class="input-field col s12">
+                      <label for="title" class="visually-hidden"
+                        >Thumbnail title</label
+                      >
+                      <input
+                        placeholder="e.g., San Diego Zoning Map"
+                        type="text"
+                        id="title"
+                        name="title"
+                      />
+                    </div>
+                    <div class="col s12">
+                      <label class="color-label" for="title-color-input"
+                        >Title bar color</label
+                      >
+                      <div id="title-color" class="file-field">
+                        <div class="btn color-icon"></div>
+                        <div class="file-path-wrapper">
+                          <input
+                            type="text"
+                            class="color-input"
+                            id="title-color-input"
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        class="hex-input"
+                        id="title-hex"
+                        maxlength="7"
+                        placeholder="#0098db"
+                        aria-label="Title bar color hex code"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col s12">
+                  <div class="row">
+                    <h2>Sidebar</h2>
+                    <div class="input-field col s12">
+                      <label for="category" class="visually-hidden"
+                        >Sidebar category</label
+                      >
+                      <select name="category" id="category">
+                        <option value="READ Service">READ Service</option>
+                        <option value="EDIT Service">EDIT Service</option>
+                        <option value="Hosted Features Service">
+                          Hosted Features Service
+                        </option>
+                        <option value="Hosted Feature Layer">
+                          Hosted Feature Layer
+                        </option>
+                        <option value="Hosted Table">Hosted Table</option>
+                        <option value="Imagery Layer">Imagery Layer</option>
+                        <option value="Image">Image</option>
+                        <option value="Tile Layer">Tile Layer</option>
+                        <option value="__custom__">Other...</option>
+                      </select>
+                    </div>
+
+                    <!-- Hidden text input for custom category -->
+                    <div
+                      class="input-field col s12 hidden"
+                      id="custom-category-wrapper"
+                    >
+                      <label for="custom-category" class="visually-hidden">
+                        Custom category text
+                      </label>
+                      <input
+                        type="text"
+                        id="custom-category"
+                        placeholder="Enter custom category"
+                      />
+                    </div>
+
+                    <div class="col s12">
+                      <label class="color-label" for="category-color-input"
+                        >Sidebar color</label
+                      >
+                      <div id="category-color" class="file-field">
+                        <div class="btn color-icon"></div>
+                        <div class="file-path-wrapper">
+                          <input
+                            type="text"
+                            class="color-input"
+                            id="category-color-input"
+                          />
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        class="hex-input"
+                        id="category-hex"
+                        maxlength="7"
+                        placeholder="#ffa02f"
+                        aria-label="Sidebar color hex code"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- /main -->
+
+    <footer class="page-footer">
+      <div class="container">
+        <p>
+          Independent community project, not affiliated with or endorsed by
+          Esri. ArcGIS is a trademark of Esri. Styled to
+          <a href="https://www.tds.com" target="_blank" rel="noopener"
+            >TDS Telecom GIS Administration standards</a
+          >.
+          <a href="help.html">Help &amp; query parameters</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Vendored locally (no CDN) -->
+    <script src="./js/jquery-3.7.1.slim.min.js"></script>
+    <script src="./js/materialize.min.js"></script>
+    <script src="./js/materialize-colorpicker.min.js"></script>
+    <script src="./js/thumbnail.js"></script>
+    <script src="./js/builder.js"></script>
+    <script src="./js/theme.js"></script>
+  </body>
+</html>

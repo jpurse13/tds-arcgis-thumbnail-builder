@@ -1,0 +1,85 @@
+Folder PATH listing for volume OSDisk
+Volume serial number is 0CB6-4F51
+C:.
+¦   .editorconfig
+¦   .gitignore
+¦   404.html
+¦   group.html
+¦   help.html
+¦   index.html
+¦   LICENSE
+¦   project_structure.txt
+¦   README.md
+¦   viewer.html
+¦   
++---.vscode
+¦       extensions.json
+¦       launch.json
+¦       service.html
+¦       settings.json
+¦       
++---css
+¦       fonts.css
+¦       main.css
+¦       materialize-colorpicker.min.css
+¦       materialize.min.css
+¦       
++---fonts
+¦       material-icons.woff2
+¦       open-sans-latin.woff2
+¦       
++---img
+¦   +---background
+¦   ¦       COLO_background.jfif
+¦   ¦       DEV_ServicesBackground.png
+¦   ¦       OSPC_background.jpg
+¦   ¦       ParcelMap_Background.png
+¦   ¦       PROD_EDIT_Services Background.jpg
+¦   ¦       PROD_READ_Services Background.jpg
+¦   ¦       ROW_background.jfif
+¦   ¦       STAGE_Services Background.jpg
+¦   ¦       TDS_Portal_COLO_Groups.png
+¦   ¦       TDS_Portal_CSE_Groups.png
+¦   ¦       TDS_Portal_FS_DropCoordination_Groups.png
+¦   ¦       TDS_Portal_FS_Engineering_Groups.png
+¦   ¦       TDS_Portal_FS_Opperations_Groups.png
+¦   ¦       TDS_Portal_OSPC_Groups.png
+¦   ¦       TDS_Portal_OSPE_Groups.png
+¦   ¦       TDS_Portal_ROW_Groups.png
+¦   ¦       tsd_background.jpg
+¦   ¦       
+¦   +---gallery
+¦   ¦       social_card.jpg
+¦   ¦       
+¦   +---logo
+¦   ¦       apple_touch_TDS_180.png
+¦   ¦       LightBox_Logo.png
+¦   ¦       TDS_BLK_Logo.png
+¦   ¦       TDS_Color_Favicon_32.png
+¦   ¦       TDS_Color_Logo.png
+¦   ¦       TDS_Color_Logo_favicon_68x28.png
+¦   ¦       TDS_Color_Logo_Large.png
+¦   ¦       TDS_Color_Square.png
+¦   ¦       TDS_DEV_Portal.png
+¦   ¦       TDS_DEV_Portal_tag.png
+¦   ¦       TDS_favicon_32.png
+¦   ¦       TDS_PROD_Portal_tag.png
+¦   ¦       TDS_STAGE_Portal.png
+¦   ¦       TDS_STAGE_Portal_tag.png
+¦   ¦       TDS_White_REV.png
+¦   ¦       
+¦   +---materialize-colorpicker
+¦           alpha-horizontal.png
+¦           alpha.png
+¦           hue-horizontal.png
+¦           hue.png
+¦           saturation.png
+¦           
++---js
+        builder.js
+        jquery-3.7.1.slim.min.js
+        materialize-colorpicker.min.js
+        materialize.min.js
+        theme.js
+        thumbnail.js
+        

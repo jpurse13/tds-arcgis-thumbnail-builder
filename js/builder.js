@@ -9,13 +9,31 @@
 (function () {
   "use strict";
 
-  var isGroup = !!document.querySelector("#group-canvas");
-  var canvas = document.querySelector(isGroup ? "#group-canvas" : "#edit-canvas");
+  // Determine which builder page we're on
+  var mode = "item";
+
+  if (document.querySelector("#group-canvas")) {
+    mode = "group";
+  } else if (document.querySelector("#service-canvas")) {
+    mode = "service";
+  }
+  var isGroup = mode === "group";
+  var isService = mode === "service";
+
+  var canvas = document.querySelector(
+    mode === "group"
+      ? "#group-canvas"
+      : mode === "service"
+        ? "#service-canvas"
+        : "#edit-canvas",
+  );
+
   if (!canvas) {
     throw new Error("builder.js loaded on a page without a builder canvas");
   }
   // Logical output size (what the downloaded PNG is).
-  var OUT_W = isGroup ? 400 : 600;
+  var OUT_W = mode === "group" ? 400 : mode === "service" ? 600 : 600;
+
   var OUT_H = 400;
   // Render the on-screen canvas at the display's pixel density (supersampled,
   // capped at 2x) so the preview stays crisp on high-DPI/Retina screens; the
@@ -27,7 +45,12 @@
   canvas.height = OUT_H * SS;
   var ctx = canvas.getContext("2d");
   ctx.scale(SS, SS);
-  var paint = isGroup ? Thumb.paintGroup : Thumb.paintItem;
+  var paint =
+    mode === "group"
+      ? Thumb.paintGroup
+      : mode === "service"
+        ? Thumb.paintService
+        : Thumb.paintItem;
   var downloadSuffix = isGroup ? "group-thumbnail" : "thumbnail";
 
   // City of San Diego theme, loaded when the page opens with no query params.
@@ -177,7 +200,9 @@
       };
       img.onerror = function () {
         if (token !== slot.seq) return;
-        toast("That file doesn't look like a supported image (PNG, JPEG, GIF).");
+        toast(
+          "That file doesn't look like a supported image (PNG, JPEG, GIF).",
+        );
       };
       img.src = reader.result;
     };
@@ -193,7 +218,9 @@
 
   // ---- Init ------------------------------------------------------------
   document.addEventListener("DOMContentLoaded", function () {
-    $("#title-color").colorpicker({ component: ".btn" }).on("changeColor", draw);
+    $("#title-color")
+      .colorpicker({ component: ".btn" })
+      .on("changeColor", draw);
     wireHex("#title-color", "#title-hex");
     if (!isGroup) {
       $("#category-color")
@@ -270,7 +297,11 @@
 
     setColor("#title-color", param("titleColor"), "rgba(0,152,219,0.9)"); // cerulean
     if (!isGroup) {
-      setColor("#category-color", param("sidebarColor"), "rgba(255,160,47,0.9)"); // sunshade
+      setColor(
+        "#category-color",
+        param("sidebarColor"),
+        "rgba(255,160,47,0.9)",
+      ); // sunshade
     }
 
     titleInput.value = param("title") != null ? param("title") : DEFAULTS.title;
@@ -335,7 +366,9 @@
         titleInput.value = DEFAULTS.title;
         if (select) {
           select.value = select.options[0].value;
-          document.getElementById("custom-category-wrapper").classList.add("hidden");
+          document
+            .getElementById("custom-category-wrapper")
+            .classList.add("hidden");
           document.getElementById("custom-category").value = "";
           M.FormSelect.init(select);
         }
@@ -386,7 +419,9 @@
       match.selected = true;
     } else {
       select.value = "__custom__";
-      document.getElementById("custom-category-wrapper").classList.remove("hidden");
+      document
+        .getElementById("custom-category-wrapper")
+        .classList.remove("hidden");
       document.getElementById("custom-category").value = value;
     }
   }
@@ -415,7 +450,8 @@
       });
     });
     zone.addEventListener("drop", function (e) {
-      var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      var file =
+        e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
       if (!file) return;
       if (!/^image\//.test(file.type)) {
         toast("Drop an image file (PNG, JPEG, GIF).");

@@ -169,7 +169,10 @@
     cx.drawImage(img, 0, 0);
     try {
       var d = cx.getImageData(0, 0, c.width, c.height).data;
-      var minX = c.width, minY = c.height, maxX = -1, maxY = -1;
+      var minX = c.width,
+        minY = c.height,
+        maxX = -1,
+        maxY = -1;
       for (var y = 0; y < c.height; y++) {
         for (var x = 0; x < c.width; x++) {
           if (d[(y * c.width + x) * 4 + 3] > 8) {
@@ -374,22 +377,54 @@
     base: 28,
     padBottom: 10,
   };
-
+  var SERVICE_TITLE = {
+    rectX: 0,
+    rectY: 300,
+    rectW: 500,
+    rectH: 120,
+    x: 250,
+    top: 300,
+    height: 100,
+    maxWidth: 460,
+    base: 30,
+    padBottom: 12,
+  };
   function paintItem(ctx, cfg) {
     ctx.clearRect(0, 0, 600, 400);
     drawTitle(ctx, cfg.title || "", cfg.titleColor, ITEM_TITLE);
     drawSidebar(ctx, cfg.category || "", cfg.categoryColor);
     drawBackground(ctx, cfg.bgImage, 1.5, 600, 400);
-    drawLogo(ctx, cfg.logoImage, 120 * (cfg.logoScale || 1), cfg.logoStroke || 0);
+    drawLogo(
+      ctx,
+      cfg.logoImage,
+      120 * (cfg.logoScale || 1),
+      cfg.logoStroke || 0,
+    );
   }
 
   function paintGroup(ctx, cfg) {
     ctx.clearRect(0, 0, 400, 400);
     drawTitle(ctx, cfg.title || "", cfg.titleColor, GROUP_TITLE);
     drawBackground(ctx, cfg.bgImage, 1, 400, 400);
-    drawLogo(ctx, cfg.logoImage, 100 * (cfg.logoScale || 1), cfg.logoStroke || 0);
+    drawLogo(
+      ctx,
+      cfg.logoImage,
+      100 * (cfg.logoScale || 1),
+      cfg.logoStroke || 0,
+    );
   }
-
+  function paintService(ctx, cfg) {
+    ctx.clearRect(0, 0, 600, 400);
+    drawTitle(ctx, cfg.title || "", cfg.titleColor, SERVICE_TITLE);
+    drawSidebar(ctx, cfg.category || "", cfg.categoryColor);
+    drawBackground(ctx, cfg.bgImage, 1.5, 600, 400);
+    drawLogo(
+      ctx,
+      cfg.logoImage,
+      100 * (cfg.logoScale || 1.5),
+      cfg.logoStroke || 0,
+    );
+  }
   // ---- Template preview cards (rendered from each card's own link) ----
 
   // Plain image load (no crossOrigin): previews are never exported, so a
@@ -464,5 +499,9 @@
     renderTemplatePreviews();
   }
 
-  window.Thumb = { paintItem: paintItem, paintGroup: paintGroup };
+  window.Thumb = {
+    paintItem: paintItem,
+    paintGroup: paintGroup,
+    paintService: paintService,
+  };
 })();
