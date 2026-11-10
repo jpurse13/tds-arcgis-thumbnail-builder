@@ -62,7 +62,88 @@
     background: "./img/background/OSPC_background.jpg",
     logo: "./img/logo/TDS_Color_Logo.png",
   };
-
+  var STANDARD_GROUP_BACKGROUNDS = [
+    {
+      name: "CS&E Group",
+      file: "./img/background/TDS_Portal_CSE_Groups.png",
+    },
+    {
+      name: "COLO Group",
+      file: "./img/background/TDS_Portal_COLO_Groups.png",
+    },
+    {
+      name: "FS Drop Coordination Group",
+      file: "./img/background/TDS_Portal_FS_Drop_Coordination_Groups.png",
+    },
+    {
+      name: "FS Engineering Group",
+      file: "./img/background/TDS_Portal_FS_Engineering_Groups.png",
+    },
+    {
+      name: "FS Field Operations Group",
+      file: "./img/background/TDS_Portal_FS_Field_Operations_Groups.png",
+    },
+    {
+      name: "MPI Group",
+      file: "./img/background/TDS_Portal_MPI_Groups.png",
+    },
+    {
+      name: "OSPC Group",
+      file: "./img/background/TDS_Portal_OSPC_Groups.png",
+    },
+    {
+      name: "OSPE Group",
+      file: "./img/background/TDS_Portal_OSPE_Groups.png",
+    },
+    {
+      name: "ROW Group",
+      file: "./img/background/TDS_Portal_ROW_Groups.png",
+    },
+  ];
+  var STANDARD_SERVICE_BACKGROUNDS = [
+    {
+      name: "DEV Read Service",
+      file: "./img/background/DEV_READ_Services_Background.png",
+    },
+    {
+      name: "DEV Edit Service",
+      file: "./img/background/DEV_EDIT_Services_Background.png",
+    },
+    {
+      name: "STAGE Read Service",
+      file: "./img/background/STAGE_READ_Services_Background.png",
+    },
+    {
+      name: "STAGE Edit Service",
+      file: "./img/background/STAGE_EDIT_Services_Background.png",
+    },
+    {
+      name: "PROD Read Service",
+      file: "./img/background/PROD_READ_Services_Background.png",
+    },
+    {
+      name: "PROD Edit Service",
+      file: "./img/background/PROD_EDIT_Services_Background.png",
+    },
+  ];
+  var STANDARD_LOGOS = [
+    {
+      name: "TDS PROD Portal",
+      file: "./img/logo/TDS_PROD_Portal_tag.png",
+    },
+    {
+      name: "TDS STAGE Portal",
+      file: "./img/logo/TDS_STAGE_Portal_tag.png",
+    },
+    {
+      name: "TDS DEV Portal",
+      file: "./img/logo/TDS_DEV_Portal_tag.png",
+    },
+    {
+      name: "TDS Color Logo",
+      file: "./img/logo/TDS_Color_Logo.png",
+    },
+  ];
   // Logo size multiplier and white-outline width, set from ?logoScale= /
   // ?logoStroke= so a template can render a detailed badge larger and legible.
   var logoScale = 1;
@@ -245,6 +326,16 @@
     }
 
     // File uploads
+    var logoSelect = document.querySelector("#logo-select");
+    if (logoSelect) {
+      STANDARD_LOGOS.forEach(function (logo) {
+        var opt = document.createElement("option");
+        opt.value = logo.file;
+        opt.textContent = logo.name;
+        logoSelect.appendChild(opt);
+      });
+      M.FormSelect.init(logoSelect);
+    }
     Object.keys(slots).forEach(function (name) {
       var slot = slots[name];
       if (slot.fileEl) {
@@ -289,7 +380,19 @@
     setupTemplateCards();
     setupRailScrollIndicators();
     setupLogoSliders();
+    var logoSelect = document.querySelector("#logo-select");
 
+    if (logoSelect) {
+      logoSelect.addEventListener("change", function () {
+        var url = this.value;
+
+        if (!url) return;
+
+        slots.logo.url = url;
+
+        loadFromUrl("logo", url);
+      });
+    }
     // ---- Query params ----
     logoScale = parseFloat(param("logoScale")) || 1;
     logoStroke = parseFloat(param("logoStroke")) || 0;
@@ -387,6 +490,11 @@
           loadFromUrl(name, slot.defaultUrl); // silent brand default
         });
         M.updateTextFields();
+        var logoSelect = document.querySelector("#logo-select");
+        if (logoSelect) {
+          logoSelect.selectedIndex = 0;
+          M.FormSelect.init(logoSelect);
+        }
         draw();
       });
     }

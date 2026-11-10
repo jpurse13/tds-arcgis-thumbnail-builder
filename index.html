@@ -129,7 +129,7 @@
       <div class="row">
         <!-- Template rail: pick a starting point -->
         <aside class="col s12 l3 template-rail">
-          <h2 class="rail-title">Templates</h2>
+          <h3 class="rail-title">Templates</h3>
           <p class="grey-text text-darken-1">
             Pick one to load it into the builder.
           </p>
@@ -197,7 +197,7 @@
         <!-- Builder: preview + image uploads on the left, title/sidebar on the right -->
         <div class="col s12 l9">
           <div class="row">
-            <!-- Preview + image uploads -->
+            <!-- Preview -->
             <div class="col s12 l6">
               <div class="row">
                 <!-- Accessible thumbnail preview -->
@@ -239,148 +239,50 @@
                   <i class="material-icons left">refresh</i>Reset
                 </button>
               </div>
-
-              <div class="row">
-                <h2>Background Image</h2>
-                <p class="grey-text text-darken-1 field-hint">
-                  600×400 px or larger · PNG, JPEG, GIF
-                </p>
-                <div class="input-field col s12">
-                  <div class="file-field input-field">
-                    <div class="btn">
-                      <span>File</span>
-                      <label for="background" class="visually-hidden"
-                        >Upload background image</label
-                      >
-                      <input
-                        type="file"
-                        id="background"
-                        accept="image/png,image/jpeg,image/gif"
-                      />
-                    </div>
-                    <div class="file-path-wrapper">
-                      <input
-                        class="file-path validate"
-                        type="text"
-                        aria-label="Selected background file"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="col s12 url-field">
-                  <label class="color-label" for="background-url"
-                    >or paste a background image URL</label
-                  >
-                  <input
-                    type="text"
-                    id="background-url"
-                    class="url-input"
-                    placeholder="https://…"
-                  />
-                </div>
-              </div>
-
-              <div class="row">
-                <h2>Logo Image</h2>
-                <p class="grey-text text-darken-1 field-hint">
-                  Square transparent PNG recommended · 256×256 px or larger
-                </p>
-                <div class="input-field col s12">
-                  <div class="file-field input-field">
-                    <div class="btn">
-                      <span>File</span>
-                      <label for="logo" class="visually-hidden"
-                        >Upload logo image</label
-                      >
-                      <input
-                        type="file"
-                        id="logo"
-                        accept="image/png,image/jpeg,image/gif"
-                      />
-                    </div>
-                    <div class="file-path-wrapper">
-                      <input
-                        class="file-path validate"
-                        type="text"
-                        aria-label="Selected logo file"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="col s12 url-field">
-                  <label class="color-label" for="logo-url"
-                    >or paste a logo image URL</label
-                  >
-                  <input
-                    type="text"
-                    id="logo-url"
-                    class="url-input"
-                    placeholder="https://…"
-                  />
-                </div>
-                <div class="col s12 slider-field">
-                  <label class="color-label" for="logo-scale"
-                    >Logo size <span id="logo-scale-val">100%</span></label
-                  >
-                  <p class="range-field">
-                    <input
-                      type="range"
-                      id="logo-scale"
-                      min="0.6"
-                      max="2"
-                      step="0.05"
-                      value="1"
-                    />
-                  </p>
-                </div>
-              </div>
             </div>
-
             <!-- Title and sidebar -->
             <div class="col s12 l6">
-              <div class="row">
-                <div class="col s12">
-                  <div class="row">
-                    <h2>Title</h2>
-                    <div class="input-field col s12">
-                      <label for="title" class="visually-hidden"
-                        >Thumbnail title</label
-                      >
-                      <input
-                        placeholder="e.g., San Diego Zoning Map"
-                        type="text"
-                        id="title"
-                        name="title"
-                      />
-                    </div>
-                    <div class="col s12">
-                      <label class="color-label" for="title-color-input"
-                        >Title bar color</label
-                      >
-                      <div id="title-color" class="file-field">
-                        <div class="btn color-icon"></div>
-                        <div class="file-path-wrapper">
-                          <input
-                            type="text"
-                            class="color-input"
-                            id="title-color-input"
-                          />
-                        </div>
+              <div class="col s12">
+                <div class="row">
+                  <h3>Title</h3>
+                  <div class="input-field col s12">
+                    <label for="title" class="visually-hidden"
+                      >Thumbnail title</label
+                    >
+                    <input
+                      placeholder="e.g., DEPT Item Name Here"
+                      type="text"
+                      id="title"
+                      name="title"
+                    />
+                  </div>
+                  <div class="col s12">
+                    <label class="color-label" for="title-color-input"
+                      >Title bar color</label
+                    >
+                    <div id="title-color" class="file-field">
+                      <div class="btn color-icon"></div>
+                      <div class="file-path-wrapper">
+                        <input
+                          type="text"
+                          class="color-input"
+                          id="title-color-input"
+                        />
                       </div>
-                      <input
-                        type="text"
-                        class="hex-input"
-                        id="title-hex"
-                        maxlength="7"
-                        placeholder="#0098db"
-                        aria-label="Title bar color hex code"
-                      />
                     </div>
+                    <input
+                      type="text"
+                      class="hex-input"
+                      id="title-hex"
+                      maxlength="7"
+                      placeholder="#0098db"
+                      aria-label="Title bar color hex code"
+                    />
                   </div>
                 </div>
                 <div class="col s12">
                   <div class="row">
-                    <h2>Sidebar</h2>
+                    <h3>Sidebar</h3>
                     <div class="input-field col s12">
                       <label for="category" class="visually-hidden"
                         >Sidebar category</label
@@ -416,7 +318,6 @@
                         <option value="__custom__">Other...</option>
                       </select>
                     </div>
-
                     <!-- Hidden text input for custom category -->
                     <div
                       class="input-field col s12 hidden"
@@ -455,6 +356,102 @@
                         aria-label="Sidebar color hex code"
                       />
                     </div>
+                  </div>
+
+                  <div class="row">
+                    <h3>Background Image</h3>
+                    <p class="grey-text text-darken-1 field-hint">
+                      600×400 px or larger · PNG, JPEG, GIF
+                    </p>
+                    <div class="input-field col s12">
+                      <div class="file-field input-field">
+                        <div class="btn">
+                          <span>File</span>
+                          <label for="background" class="visually-hidden"
+                            >Upload background image</label
+                          >
+                          <input
+                            type="file"
+                            id="background"
+                            accept="image/png,image/jpeg,image/gif"
+                          />
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input
+                            class="file-path validate"
+                            type="text"
+                            aria-label="Selected background file"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col s12 url-field hidden">
+                      <label class="color-label" for="background-url"
+                        >or paste a background image URL</label
+                      >
+                      <input
+                        type="text"
+                        id="background-url"
+                        class="url-input"
+                        placeholder="https://…"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <h3>Logo Image</h3>
+                  <p class="grey-text text-darken-1 field-hint">
+                    Square transparent PNG recommended · 256×256 px or larger
+                  </p>
+                  <div class="input-field col s12">
+                    <select id="logo-select"></select>
+                    <label>Select a Standard Logo</label>
+                  </div>
+                  <div class="input-field col s12">
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>File</span>
+                        <label for="logo" class="visually-hidden"
+                          >OR Upload logo image</label
+                        >
+                        <input
+                          type="file"
+                          id="logo"
+                          accept="image/png,image/jpeg,image/gif"
+                        />
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input
+                          class="file-path validate"
+                          type="text"
+                          aria-label="Selected logo file"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col s12 url-field hidden">
+                    <label class="color-label" for="logo-url">OR</label>
+                    <input
+                      type="text"
+                      id="logo-url"
+                      class="url-input"
+                      placeholder="https://…"
+                    />
+                  </div>
+                  <div class="col s12 slider-field">
+                    <label class="color-label" for="logo-scale"
+                      >Logo size <span id="logo-scale-val">100%</span></label
+                    >
+                    <p class="range-field">
+                      <input
+                        type="range"
+                        id="logo-scale"
+                        min="0.6"
+                        max="2"
+                        step="0.05"
+                        value="1"
+                      />
+                    </p>
                   </div>
                 </div>
               </div>

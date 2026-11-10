@@ -253,7 +253,7 @@ h2:first-of-type {
 }
 
 /* Default swatch colors are brand-correct so the canvas looks right on
-   first load: cerulean title bar (#0098db), sunshade sidebar (#ffa02f). */
+   first load: . */
 #title-color .btn {
   background-color: rgba(0, 152, 219, 0.9);
 }
@@ -368,7 +368,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) {
 .btn-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 5px;
   align-items: center;
   justify-content: center;
 }
